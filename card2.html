@@ -114,9 +114,10 @@
         .then(data => {
             // Extract data from the response
             const { name, description, price, image } = data.data;
+            console.log(data.data);
 
             // Update the card content with the API data
-            document.getElementById('card-title').textContent = name;
+            document.getElementById('card-title').value = name;
             document.getElementById('card-description').textContent = description;
             document.getElementById('card-price').textContent = `$${price}`;
             document.getElementById('product-image').src = image;
