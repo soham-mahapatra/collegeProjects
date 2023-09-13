@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Showcase</title>
+    <style>
+        /* Card Styles */
+        .card {
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            position: relative;
+        }
+
+        /* Product Image Styles */
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        /* Card Content Styles */
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #333;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* Price Styles */
+        .card-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #FF5733;
+            margin-top: 10px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Ribbon Badge Styles
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: -10px;
+            background-color: #FF5733;
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            transform: rotate(45deg);
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        } */
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            .card {
+                width: 100%;
+                border-radius: 0;
+                margin: 0;
+            }
+            .ribbon {
+                top: 5px;
+                right: 5px;
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            /* .btn {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            } */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- <div class="ribbon">New</div> -->
+        <img id="product-image" src="C:\Users\soham\Pictures\vlcsnap-2023-06-11-17h14m54s956.png" alt="Product Image">
+        <div class="card-content">
+            <h2 class="card-title">Product Name</h2>
+            <p class="card-description">A fancy description of your product goes here. Highlight its unique features and benefits.</p>
+            <p class="card-price">$99.99</p>
+            <a href="#" class="btn">View more details</a>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // URL of the API
+    const apiUrl = "https://webclear.000webhostapp.com/API/Firebase/project-details.php?pid=-NdcwVwK7ziG-RAfscY4";
+
+    // Fetch data from the API
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Extract data from the response
+            const { name, description, price, image } = data.data;
+
+            // Update the card content with the API data
+            document.getElementById('card-title').textContent = name;
+            document.getElementById('card-description').textContent = description;
+            document.getElementById('card-price').textContent = `$${price}`;
+            document.getElementById('product-image').src = image;
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+</script>
