@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+      <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="assets/css/navbar.css">
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+      <title>College Projects</title>
+   </head>
+   <body>
+
+      <header class="header">
+         <a href="#" class="logo">CP</a>
+         <input type="checkbox" id="check">
+         <label for="check" class="icons">
+            <i class="bx bx-menu" id="menu-icon"></i>
+            <i class="bx bx-x" id="close-icon"></i>
+         </label>
+         <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="apps.html">Apps</a>
+            <a href="#">Websites</a>
+            <!-- <a href="#">Login</a> -->
+            <!-- <i class='bx bxl-play-store'></i> -->
+         </nav>
+      </header>
+
+      <div class="container">
+         <div class="card__container">
+            <script>
+               const apiUrl = 'https://webclear.000webhostapp.com/API/Firebase/all-projects?filter=website';
+           
+               // Function to create a project card
+               function createProjectCard(project) {
+                   const article = document.createElement('article');
+                   article.classList.add('card__article');
+           
+                   const scale1 = document.createElement('div');
+                  scale1.classList.add('card__scale-1');
+
+                  // const scale2 = document.createElement('div');
+                  // scale2.classList.add('card__scale-2');
+
+                   const shape1 = document.createElement('div');
+                   shape1.classList.add('card__shape-1');
+           
+                   const img = document.createElement('img');
+                   img.src = project.image;
+                   img.style = "position: absolute; inset: 0; margin: auto; border-radius: 1.5rem; height: 116px; width: 116px;";
+           
+                   shape1.appendChild(img);
+           
+                   const data = document.createElement('div');
+                   data.classList.add('card__data');
+           
+                   const title = document.createElement('h2');
+                   title.classList.add('card__title');
+                   title.innerText = project.name;
+           
+                  //  const description = document.createElement('p');
+                  //  description.classList.add('card__description');
+                  //  description.innerText = project.description;
+           
+                   const button = document.createElement('a');
+                   button.classList.add('card__button');
+                   button.href = 'https://play.google.com/store/apps/details?id=com.looper.tech';
+                   button.innerText = 'View Details';
+           
+                   data.appendChild(title);
+                  //  data.appendChild(description);
+                   data.appendChild(button);
+           
+                   article.appendChild(scale1);
+                  //  article.appendChild(scale2);
+                   article.appendChild(shape1);
+                   article.appendChild(data);
+           
+                   return article;
+               }
+           
+               // Fetch projects from the API
+               fetch(apiUrl)
+                   .then(response => {
+                       if (response.ok) {
+                           return response.json();
+                       } else {
+                           throw new Error('Failed to fetch projects');
+                       }
+                   })
+                   .then(data => {
+                       const projects = data.data;
+           
+                       const projectContainer = document.querySelector('.card__container');
+           
+                       // Create and append card views for each project
+                       projects.filter(project => project.status === "1").forEach(project => {
+                           const card = createProjectCard(project);
+                           projectContainer.appendChild(card);
+                       });
+                   })
+                   .catch(error => {
+                       console.error('Error fetching projects:', error);
+                   });
+           </script>
+<!--            
+           <article class="card__article">
+               <div class="card__scale-1"></div>
+               <div class="card__scale-2"></div>
+
+               <div class="card__shape-1">
+                  <img src="C:\Users\soham\Pictures\20220506_175509.jpg" style="position: absolute; inset: 0; margin: auto; border-radius: 1.5rem; height: 116px; width: 116px;"/>
+               </div>
+   
+               <div class="card__data">
+                  <h2 class="card__title">Awesome Card 01</h2>
+                  
+                  <p class="card__description">
+                     Gradient card, with bright edges 
+                     that gives it a cool look.
+                  </p>
+
+                  <a href="#" class="card__button">
+                     Add to Cart
+                  </a>
+               </div>
+            </article> -->
+   
+            <!--  <article class="card__article card__orange">
+               <div class="card__scale-1"></div>
+               <div class="card__scale-2"></div>
+
+               <div class="card__shape-1">
+                  <div class="card__shape-2"></div>
+                  <div class="card__shape-3">
+                     <i class="ri-fire-line card__icon"></i>
+                  </div>
+               </div>
+   
+               <div class="card__data">
+                  <h2 class="card__title">Awesome Card 02</h2>
+
+                  <p class="card__description">
+                     Gradient card, with bright edges 
+                     that gives it a cool look.
+                  </p>
+
+                  <a href="#" class="card__button">
+                     Add to Cart
+                  </a>
+               </div>
+            </article>
+   
+            <article class="card__article card__green">
+               <div class="card__scale-1"></div>
+               <div class="card__scale-2"></div>
+
+               <div class="card__shape-1">
+                  <div class="card__shape-2"></div>
+                  <div class="card__shape-3">
+                     <i class="ri-shining-line card__icon"></i>
+                  </div>
+               </div>
+   
+               <div class="card__data">
+                  <h2 class="card__title">Awesome Card 03</h2>
+
+                  <p class="card__description">
+                     Gradient card, with bright edges 
+                     that gives it a cool look.
+                  </p>
+
+                  <a href="#" class="card__button">
+                     Add to Cart
+                  </a>
+               </div>
+            </article> -->
+         </div>
+      </div>
+   </body>
+</html>
