@@ -107,7 +107,7 @@
     <script>
         const urlSearchParams = new URLSearchParams(window.location.search);
         const pid = urlSearchParams.get('pid');
-        const apiUrl = `https://college-projects-api.vercel.app/?pid=${pid}`;
+        const apiUrl = `https://college-projects-api.vercel.app/project-details?pid=${pid}`;
     
         fetch(apiUrl)
             .then(response => response.json())
