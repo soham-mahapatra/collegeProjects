@@ -107,7 +107,7 @@
     <script>
         const urlSearchParams = new URLSearchParams(window.location.search);
         const pid = urlSearchParams.get('pid');
-        const apiUrl = `https://webclear.000webhostapp.com/API/Firebase/project-details.php?pid=${pid}`;
+        const apiUrl = `https://college-projects-api.vercel.app/?pid=${pid}`;
     
         fetch(apiUrl)
             .then(response => response.json())
